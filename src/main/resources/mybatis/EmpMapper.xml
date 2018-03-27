@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.mapper.scott.EmpMapper">
+	<select id="list" resultType="com.example.entity.scott.EmpEntity">
+		select * from emp
+	</select>
+
+	<insert id="save" parameterType="com.example.entity.scott.EmpEntity">
+		INSERT INTO EMP(
+			EMPNO,
+			ENAME,
+			JOB,
+			MGR,
+			HIREDATE,
+			SAL,
+			COMM,
+			DEPTNO )
+		VALUES (
+			#{empno,jdbcType=NUMERIC},
+			#{ename,jdbcType=VARCHAR},
+			#{job,jdbcType=VARCHAR},
+			#{mgr,jdbcType=NUMERIC},
+			#{hiredate,jdbcType=DATE},
+			#{sal,jdbcType=NUMERIC},
+			#{comm,jdbcType=NUMERIC},
+			#{deptno,jdbcType=NUMERIC})
+	</insert>
+</mapper>

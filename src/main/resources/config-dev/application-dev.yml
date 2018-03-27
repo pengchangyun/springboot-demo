@@ -1,0 +1,57 @@
+server:
+  port: 80
+  
+spring:
+  application:
+    name: springboot-demo
+  datasource:
+    name: test
+    url: jdbc:oracle:thin:@localhost:1521:orcl
+    username: scott
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 1 from dual
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+  redis:
+    host: localhost
+    port: 6379
+  mail:
+    host: smtp.163.com
+    username: 18084909083@163.com
+    password: pcy5932439
+    port: 25
+    properties:
+      mail:
+        smtp:
+          type: smtp
+          auth: true
+          starttls:
+            enable: true
+          required: true
+         
+mybatis:
+  mapper-locations: classpath:mybatis/*.xml
+  type-aliases-package: com.example.entity
+  
+pagehelper:
+  helperDialect: oracle
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+  
+logging:
+  level:
+    com.example.mapper: debug
+  file: D:\\log\srpingboot.log
