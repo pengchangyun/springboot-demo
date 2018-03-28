@@ -1,5 +1,8 @@
 package com.example.mail;
 
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +20,16 @@ public class MailTest {
 	private PushMail pushMail;
 
 	@Test
-	public void simpleSendEmail() {
+	public void simpleSendEmail() throws InterruptedException, ExecutionException {
 		TextMail textMail = new TextMail("718988677@qq.com", "吃饭", "请客哦");
-		pushMail.pushText(textMail);
+		Future<String> task = pushMail.pushText(textMail);
+		
+		while(true) {
+			if(task.isDone()) {
+				System.out.println(task.get());
+				break;
+			}
+			Thread.sleep(500);
+		}
 	}
 }
